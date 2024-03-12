@@ -22,18 +22,35 @@
 
 // 배열의 평균값
 
-import Foundation
+//import Foundation
+//
+//func solution(_ numbers:[Int]) -> Double {
+//    var sum = 0
+//    // for 문으로 num에 배열의 0번째부터 (numbers의 개수 - 1)번째까지 돌리기
+//    for num in 0..<numbers.count {
+//        // sum에 각각 더해줌
+//        sum += numbers[num]
+//    }
+//    // numbers에 있는 모든 수를 더한 sum / numbers의 개수 = 평균
+//    return Double(sum) / Double(numbers.count)
+//}
+//
+//solution([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+//solution([89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99])
 
-func solution(_ numbers:[Int]) -> Double {
-    var sum = 0
-    // for 문으로 num에 배열의 0번째부터 (numbers의 개수 - 1)번째까지 돌리기
-    for num in 0..<numbers.count {
-        // sum에 각각 더해줌
-        sum += numbers[num]
+// 짝수와 홀수
+
+func solution(_ num:Int) -> String {
+    // num을 2로 나눈 나머지가 0이라면
+    if num % 2 == 0 {
+        // "Even"을 리턴
+        return "Even"
+    // 그게 아니라면
+    } else {
+        // "Odd"를 리턴
+        return "Odd"
     }
-    // numbers에 있는 모든 수를 더한 sum / numbers의 개수 = 평균
-    return Double(sum) / Double(numbers.count)
 }
-
-solution([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-solution([89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99])
+solution(10)
+solution(3)
+solution(4)
