@@ -158,32 +158,58 @@
 //solution(12)  // 결과: 28
 //solution(5)  // 결과: 6
 
+// --------------------------------------------------------------------------- //
+
 // 푸드파이터
 
+//import Foundation
+//func solution(_ food:[Int]) -> String {
+//    var myFood = ""
+//    // for문으로 1 ~ food.count 돌리기
+//    for i in 1..<food.count {
+//        // 만약 food의 i번째 수가 1이 아니라면
+//        if food[i] != 1 {
+//            // foodCount = 1개가 아닌 음식의 수
+//            let foodCount = food[i]
+//            // 2명의 참가자가 동일하게 먹어야하므로 음식의 수는 짝수여야 함 -> 나누기 2를 한 몫
+//            let canEatCount = foodCount / 2
+//            // canEatArray = i를 canEatCount만큼 반복하는 Array // ex.[1, 1, 1, 3]
+//            let canEatArray = Array(repeating: "\(i)", count: canEatCount)
+//            // canEatString = 공백없이 배열을 join하기 -> ex. 1113
+//            let canEatString = canEatArray.joined()
+//            // myFood에 canEatString 더해주기 -> ex. "1113"
+//            myFood.append(canEatString)
+//        }
+//    }
+//    // myFood + "0" + myFood 거꾸로 -> ex. "111303111"
+//    let placementOfFood = myFood + "0" + myFood.reversed()
+//    return placementOfFood
+//}
+//
+//solution([1, 3, 4, 6])  // 결과: "1223330333221"
+//solution([1, 7, 1, 2])  // 결과: "111303111"
+
+// ----------------------------------------------------------------------------- //
+
+// 나머지가 1이 되는 수 찾기
+
 import Foundation
-func solution(_ food:[Int]) -> String {
-    var myFood = ""
-    // for문으로 1 ~ food.count 돌리기
-    for i in 1..<food.count {
-        // 만약 food의 i번째 수가 1이 아니라면
-        if food[i] != 1 {
-            // foodCount = 1개가 아닌 음식의 수
-            let foodCount = food[i]
-            // 2명의 참가자가 동일하게 먹어야하므로 음식의 수는 짝수여야 함 -> 나누기 2를 한 몫
-            let canEatCount = foodCount / 2
-            // canEatArray = i를 canEatCount만큼 반복하는 Array // ex.[1, 1, 1, 3]
-            let canEatArray = Array(repeating: "\(i)", count: canEatCount)
-            // canEatString = 공백없이 배열을 join하기 -> ex. 1113
-            let canEatString = canEatArray.joined()
-            // myFood에 canEatString 더해주기 -> ex. "1113"
-            myFood.append(canEatString)
+
+func solution(_ n:Int) -> Int {
+    // for문으로 2에서 n까지 돌리기 (-> 1로 나누었을 때, 나머지가 1일 되는 경우는 없음)
+    for num in 2..<n {
+        // 만약 n을 num으로 나눈 나머지가 1이라면 (-> 2부터 num을 for문으로 돌렸기 때문에 그 값이 가장 작은 수)
+        if n % num == 1 {
+            // num을 리턴
+            return num
         }
     }
-    // myFood + "0" + myFood 거꾸로 -> ex. "111303111"
-    let placementOfFood = myFood + "0" + myFood.reversed()
-    return placementOfFood
+    return 0
 }
 
-solution([1, 3, 4, 6])  // 결과: "1223330333221"
-solution([1, 7, 1, 2])  // 결과: "111303111"
+solution(10) // 결과: 3
+solution(12) // 결과: 11
+solution(55) // 결과: 2
+solution(100) // 결과: 3
+
 
