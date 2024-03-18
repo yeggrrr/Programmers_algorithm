@@ -1,7 +1,7 @@
 // 짝수의 합 구하기
 
 //import Foundation
-//func solution(_ n:Int) -> Int {
+//func solution(_ n: Int) -> Int {
 //    var sum = 0
 //    // for 문으로 0부터 n까지 돌리기
 //    for num in 0...n {
@@ -24,7 +24,7 @@
 
 //import Foundation
 //
-//func solution(_ numbers:[Int]) -> Double {
+//func solution(_ numbers: [Int]) -> Double {
 //    var sum = 0
 //    // for 문으로 num에 배열의 0번째부터 (numbers의 개수 - 1)번째까지 돌리기
 //    for num in 0..<numbers.count {
@@ -61,7 +61,7 @@
 
 // 짝수와 홀수
 
-//func solution(_ num:Int) -> String {
+//func solution(_ num: Int) -> String {
 //    // num을 2로 나눈 나머지가 0이라면
 //    if num % 2 == 0 {
 //        // "Even"을 리턴
@@ -80,7 +80,7 @@
 // ----------------------------------------------------------------- //
 // 평균 구하기
 
-//func solution(_ arr:[Int]) -> Double {
+//func solution(_ arr: [Int]) -> Double {
 //    var sum = 0
 //    for num in 0..<arr.count {
 //        sum += arr[num]
@@ -100,7 +100,7 @@
 
 //import Foundation
 //
-//func solution(_ n:Int) -> Int {
+//func solution(_ n: Int) -> Int {
 //    var answer = 0
 //    // str = n을 문자열로
 //    var str = String(n)
@@ -121,7 +121,7 @@
 
 // <방법2>
 
-//func solution2(_ n:Int) -> Int {
+//func solution2(_ n: Int) -> Int {
 //    var answer:Int = 0
 //    var num: Int = n
 //    // num이 0보다 클 경우 while 반복문 돌리기
@@ -139,7 +139,7 @@
 
 // 약수의 합
 
-//func solution(_ n:Int) -> Int {
+//func solution(_ n: Int) -> Int {
 //    var sum = 0
 //    // n이 0보다 클 경우 guard문을 빠져나가고, 아니라면 0 리턴
 //    guard n > 0 else { return 0 }
@@ -163,7 +163,7 @@
 // 푸드파이터
 
 //import Foundation
-//func solution(_ food:[Int]) -> String {
+//func solution(_ food: [Int]) -> String {
 //    var myFood = ""
 //    // for문으로 1 ~ food.count 돌리기
 //    for i in 1..<food.count {
@@ -194,7 +194,7 @@
 // 푸드파이터
 
 //import Foundation
-//func solution(_ food:[Int]) -> String {
+//func solution(_ food: [Int]) -> String {
 //    var myFood = ""
 //    // for문으로 1 ~ food.count 돌리기
 //    for i in 1..<food.count {
@@ -224,22 +224,48 @@
 
 // 나머지가 1이 되는 수 찾기
 
-import Foundation
+//import Foundation
+//
+//func solution(_ n: Int) -> Int {
+//    // for문으로 2에서 n까지 돌리기 (-> 1로 나누었을 때, 나머지가 1일 되는 경우는 없음)
+//    for num in 2..<n {
+//        // 만약 n을 num으로 나눈 나머지가 1이라면 (-> 2부터 num을 for문으로 돌렸기 때문에 그 값이 가장 작은 수)
+//        if n % num == 1 {
+//            // num을 리턴
+//            return num
+//        }
+//    }
+//    return 0
+//}
+//
+//solution(10) // 결과: 3
+//solution(12) // 결과: 11
+//solution(55) // 결과: 2
+//solution(100) // 결과: 3
 
-func solution(_ n:Int) -> Int {
-    // for문으로 2에서 n까지 돌리기 (-> 1로 나누었을 때, 나머지가 1일 되는 경우는 없음)
-    for num in 2..<n {
-        // 만약 n을 num으로 나눈 나머지가 1이라면 (-> 2부터 num을 for문으로 돌렸기 때문에 그 값이 가장 작은 수)
-        if n % num == 1 {
-            // num을 리턴
-            return num
-        }
+// ------------------------------------------------------------------------ //
+
+// x만큼 간격이 있는 n개의 숫자
+
+func solution(_ x:Int, _ n:Int) -> [Int64] {
+    var sum = [Int64]()
+    for i in 1...n {
+        sum.append(Int64(i * x))
     }
-    return 0
+    return sum
 }
 
-solution(10) // 결과: 3
-solution(12) // 결과: 11
-solution(55) // 결과: 2
-solution(100) // 결과: 3
+solution(2, 5) // 결과: [2, 4, 6, 8, 10]
+solution(4, 3) // 결과: [4, 8, 12]
+solution(-4, 2) // 결과: [-4, -8]
+
+
+
+// Int 범위
+print("Int8 범위: \(Int8.min) ~ \(Int8.max)")
+print("Int16 범위: \(Int16.min) ~ \(Int16.max)")
+print("Int32범위: \(Int32.min) ~ \(Int32.max)")
+print("Int64 범위: \(Int64.min) ~ \(Int64.max)")
+print("Int 범위: \(Int.min) ~ \(Int.max)")
+
 
