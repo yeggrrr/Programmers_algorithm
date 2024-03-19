@@ -247,25 +247,76 @@
 
 // x만큼 간격이 있는 n개의 숫자
 
-func solution(_ x:Int, _ n:Int) -> [Int64] {
-    var sum = [Int64]()
-    for i in 1...n {
-        sum.append(Int64(i * x))
+//func solution(_ x:Int, _ n:Int) -> [Int64] {
+//    var sum = [Int64]()
+//    for i in 1...n {
+//        sum.append(Int64(i * x))
+//    }
+//    return sum
+//}
+//
+//solution(2, 5) // 결과: [2, 4, 6, 8, 10]
+//solution(4, 3) // 결과: [4, 8, 12]
+//solution(-4, 2) // 결과: [-4, -8]
+//
+//
+//
+//// Int 범위
+//print("Int8 범위: \(Int8.min) ~ \(Int8.max)")
+//print("Int16 범위: \(Int16.min) ~ \(Int16.max)")
+//print("Int32범위: \(Int32.min) ~ \(Int32.max)")
+//print("Int64 범위: \(Int64.min) ~ \(Int64.max)")
+//print("Int 범위: \(Int.min) ~ \(Int.max)")
+
+// --------------------------------------------------------------------------- //
+
+// 자연수 뒤집어 배열로 만들기
+
+func solution(_ n: Int64) -> [Int] {
+    var result: [Int] = []
+    // n을 문자열로 변환 후, 뒤집어서 for문 돌리기
+    for index in String(n).reversed() {
+        // 변환에 실패할 수 있으니, guard문으로 else break 만들어주고
+        // 넘겨받은 index를 String 으로 변환 -> Int로 변환하여 num으로
+        guard let num = Int(String(index)) else { break }
+        // result에 num 더해주기
+        result.append(num)
+
     }
-    return sum
+    return result
 }
 
-solution(2, 5) // 결과: [2, 4, 6, 8, 10]
-solution(4, 3) // 결과: [4, 8, 12]
-solution(-4, 2) // 결과: [-4, -8]
+solution(12345) // 결과: [5, 4 ,3, 2, 1]
+solution(525252) // 결과:[2, 5, 2, 5, 2, 5]
 
+// 자연수 뒤집어 배열로 만들기 _ map 활용
 
+func solution2(_ n: Int64) -> [Int] {
+    let arr = String(n).compactMap { Int(String($0)) }
+    return arr.reversed()
+}
 
-// Int 범위
-print("Int8 범위: \(Int8.min) ~ \(Int8.max)")
-print("Int16 범위: \(Int16.min) ~ \(Int16.max)")
-print("Int32범위: \(Int32.min) ~ \(Int32.max)")
-print("Int64 범위: \(Int64.min) ~ \(Int64.max)")
-print("Int 범위: \(Int.min) ~ \(Int.max)")
+solution2(12345) // 결과: [5, 4, 3, 2, 1]
+solution2(525252) // 결과:[2, 5, 2, 5, 2, 5]
+ 
+// while문 활용
+
+func solution3(_ n:Int64) -> [Int] {
+    var num: Int = Int(n)
+    var arr: [Int] = []
+
+    while num > 0 {
+        arr.append(num % 10)
+        num /= 10
+    }
+    return arr
+}
+
+solution3(12345)  // 결과: [5, 4, 3, 2, 1]
+solution3(525252) // 결과:[2, 5, 2, 5, 2, 5]
+
+// --------------------------------------------------------------------- //
+
+// 문자열을 정수로 바꾸기
 
 
