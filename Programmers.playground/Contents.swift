@@ -272,51 +272,104 @@
 
 // 자연수 뒤집어 배열로 만들기
 
-func solution(_ n: Int64) -> [Int] {
-    var result: [Int] = []
-    // n을 문자열로 변환 후, 뒤집어서 for문 돌리기
-    for index in String(n).reversed() {
-        // 변환에 실패할 수 있으니, guard문으로 else break 만들어주고
-        // 넘겨받은 index를 String 으로 변환 -> Int로 변환하여 num으로
-        guard let num = Int(String(index)) else { break }
-        // result에 num 더해주기
-        result.append(num)
-
-    }
-    return result
-}
-
-solution(12345) // 결과: [5, 4 ,3, 2, 1]
-solution(525252) // 결과:[2, 5, 2, 5, 2, 5]
+//func solution(_ n: Int64) -> [Int] {
+//    var result: [Int] = []
+//    // n을 문자열로 변환 후, 뒤집어서 for문 돌리기
+//    for index in String(n).reversed() {
+//        // 변환에 실패할 수 있으니, guard문으로 else break 만들어주고
+//        // 넘겨받은 index를 String 으로 변환 -> Int로 변환하여 num으로
+//        guard let num = Int(String(index)) else { break }
+//        // result에 num 더해주기
+//        result.append(num)
+//
+//    }
+//    return result
+//}
+//
+//solution(12345) // 결과: [5, 4 ,3, 2, 1]
+//solution(525252) // 결과:[2, 5, 2, 5, 2, 5]
 
 // 자연수 뒤집어 배열로 만들기 _ map 활용
 
-func solution2(_ n: Int64) -> [Int] {
-    let arr = String(n).compactMap { Int(String($0)) }
-    return arr.reversed()
-}
-
-solution2(12345) // 결과: [5, 4, 3, 2, 1]
-solution2(525252) // 결과:[2, 5, 2, 5, 2, 5]
+//func solution2(_ n: Int64) -> [Int] {
+//    let arr = String(n).compactMap { Int(String($0)) }
+//    return arr.reversed()
+//}
+//
+//solution2(12345) // 결과: [5, 4, 3, 2, 1]
+//solution2(525252) // 결과:[2, 5, 2, 5, 2, 5]
  
 // while문 활용
 
-func solution3(_ n:Int64) -> [Int] {
-    var num: Int = Int(n)
-    var arr: [Int] = []
-
-    while num > 0 {
-        arr.append(num % 10)
-        num /= 10
-    }
-    return arr
-}
-
-solution3(12345)  // 결과: [5, 4, 3, 2, 1]
-solution3(525252) // 결과:[2, 5, 2, 5, 2, 5]
+//func solution3(_ n: Int64) -> [Int] {
+//    var num: Int = Int(n)
+//    var arr: [Int] = []
+//
+//    while num > 0 {
+//        arr.append(num % 10)
+//        num /= 10
+//    }
+//    return arr
+//}
+//
+//solution3(12345)  // 결과: [5, 4, 3, 2, 1]
+//solution3(525252) // 결과:[2, 5, 2, 5, 2, 5]
 
 // --------------------------------------------------------------------- //
 
 // 문자열을 정수로 바꾸기
 
+// <방법1>
+//func solution(_ s: String) -> Int {
+//    return Int(s)!
+//}
+//
+//solution("1234")
+//solution("-1234")
 
+// <방법2>
+//func solution2(_ s: String) -> Int {
+//    if let num = Int(s) {
+//        return num
+//    }
+//    return 0
+//}
+//
+//solution2("1234")
+//solution2("-1234")
+
+// <방법3>
+//func solution3(_ s: String) -> Int {
+//    guard let num = Int(s) else { return 0 }
+//    return num
+//}
+//
+//solution3("1234")
+//solution3("-1234")
+
+// ------------------------------------------------------------------------ //
+ 
+// 정수 제곱근 판별
+import Foundation
+
+// <방법1>
+func solution(_ n: Int64) -> Int64 {
+    let sq = Int64(sqrt(Double(n)))
+    return sq * sq == n ? (sq + 1) * (sq + 1) : -1
+}
+
+solution(121)
+solution(3)
+
+// <방법2>
+func solution2(_ n: Int64) -> Int64 {
+    let sq = Int64(sqrt(Double(n)))
+    if sq * sq == n {
+        return (sq + 1) * (sq + 1)
+    } else {
+        return -1
+    }
+}
+
+solution2(121)
+solution2(3)
