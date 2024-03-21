@@ -350,26 +350,61 @@
 // ------------------------------------------------------------------------ //
  
 // 정수 제곱근 판별
-import Foundation
 
-// <방법1>
-func solution(_ n: Int64) -> Int64 {
-    let sq = Int64(sqrt(Double(n)))
-    return sq * sq == n ? (sq + 1) * (sq + 1) : -1
-}
-
-solution(121)
-solution(3)
+//import Foundation
+//
+//// <방법1>
+//func solution(_ n: Int64) -> Int64 {
+//    let sq = Int64(sqrt(Double(n)))
+//    return sq * sq == n ? (sq + 1) * (sq + 1) : -1
+//}
+//
+//solution(121)
+//solution(3)
 
 // <방법2>
-func solution2(_ n: Int64) -> Int64 {
-    let sq = Int64(sqrt(Double(n)))
-    if sq * sq == n {
-        return (sq + 1) * (sq + 1)
-    } else {
-        return -1
+//func solution2(_ n: Int64) -> Int64 {
+//    let sq = Int64(sqrt(Double(n)))
+//    if sq * sq == n {
+//        return (sq + 1) * (sq + 1)
+//    } else {
+//        return -1
+//    }
+//}
+//
+//solution2(121)
+//solution2(3)
+
+// ------------------------------------------------------------------------------ //
+
+// 정수 내림차순으로 배치하기
+
+//func solution(_ n:Int64) -> Int64 {
+//    guard let desc = Int64(String(String(n).sorted(by: >))) else { return 0 }
+//    return desc
+//}
+//
+//solution(118372) // 결과: 873211
+//solution(132465) // 결과: 654321
+
+// ----------------------------------------------------------------------------- //
+
+// 콜라 문제
+
+import Foundation
+
+func solution(_ a: Int, _ b: Int, _ n: Int) -> Int {
+    var nowCoke = n
+    var totalCokeCount = 0
+    
+    while nowCoke >= a {
+        totalCokeCount += ((nowCoke / a) * b)
+        nowCoke = nowCoke - ((nowCoke / a) * a) + ((nowCoke / a) * b)
     }
+    return totalCokeCount
 }
 
-solution2(121)
-solution2(3)
+solution(2, 1, 20) // 결과: 19
+solution(3, 1, 20) // 결과: 9
+solution(2, 1, 33) // 결과: 32
+solution(3, 1, 23) // 결과: 11
