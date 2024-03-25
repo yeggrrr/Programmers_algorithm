@@ -382,17 +382,92 @@
 
 // 하샤드 수
 
-func solution(_ x:Int) -> Bool {
+// <방법1>
+//func solution(_ x: Int) -> Bool {
+//    var sum = 0
+//    // 문자열(String)은 단일 객체로 사용되지만,
+//    // 구조적으로 Character 타입의 개별 문자들이 모여 이루어진 객체임.
+//    // 그래서 for문을 돌리면 자체적으로 각 문자(char)가 순회처리 됨.
+//    for i in String(x) {
+//        // Int로 다시 변환하면, optional로 나오기 때문에 guard문 사용.
+//        guard let num = Int(String(i)) else { break }
+//        // sum에 순차적으로 더해줌. (-> 각 자리 수의 합)
+//        sum += num
+//    }
+//    // x에서 sum의 나눈 나머지가 0이면(= 나누어 떨어지면),true(= 하샤드 수)
+//    return x % sum == 0
+//}
+//
+//solution(10) // 결과: true
+//solution(12) // 결과: true
+//solution(11) // 결과: false
+//solution(13) // 결과: false
+
+// <방법2>
+//func solution2(_ x: Int) -> Bool {
+//    var sum = 0
+//    var num = x
+//
+//    while num > 0 {
+//        sum += num % 10
+//        print(sum)
+//        num /= 10
+//        
+//    }
+//    return x % sum == 0
+//}
+//
+//solution2(10) // 결과: true
+//solution2(12) // 결과: true
+//solution2(11) // 결과: false
+//solution2(13) // 결과: false
+
+// ------------------------------------------------------------------------------ //
+
+// 두 정수 사이의 합
+
+// <방법1>
+func solution(_ a:Int, _ b:Int) -> Int64 {
     var sum = 0
-    for i in String(x) {
-        guard let num = Int(String(i)) else { break }
-        sum += num
+    // a와 b가 같다면,
+    if a == b {
+        // 둘 중 아무거나 리턴이므로 return a
+        return Int64(a)
     }
     
-    return x % sum == 0
+    // firstNumber = a가 b보다 작다면 a, 아니라면 b
+    // secondNumber = a가 b보다 작다면 b, 아니리면 a
+    var firstNumber = a < b ? a : b
+    var secondNumber = a < b ? b : a
+    // a ~ b까지 for문 돌리기
+    for i in firstNumber...secondNumber {
+        // sum에 모두 더해주기
+        sum += i
+    }
+    
+    return Int64(sum)
 }
 
-solution(10) // 결과: true
-solution(12) // 결과: true
-solution(11) // 결과: false
-solution(13) // 결과: false
+solution(3, 5) // 결과: 12
+solution(3, 3) // 결과: 3
+solution(5, 3) // 결과: 12
+
+// <방법2>
+
+func solution2(_ a:Int, _ b:Int) -> Int64 {
+    var sum = 0
+    if a == b {
+        return Int64(a)
+    }
+
+    for i in (a < b ? a...b : b...a) {
+        sum += i
+    }
+    
+    return Int64(sum)
+}
+
+solution2(3, 5) // 결과: 12
+solution2(3, 3) // 결과: 3
+solution2(5, 3) // 결과: 12
+
