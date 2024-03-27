@@ -217,19 +217,20 @@
 // x만큼 간격이 있는 n개의 숫자
 
 //func solution(_ x:Int, _ n:Int) -> [Int64] {
-//    var sum = [Int64]()
+//    var array = [Int64]()
 //    for i in 1...n {
-//        sum.append(Int64(i * x))
+//        array.append(Int64(i * x))
 //    }
-//    return sum
+//    
+//    return array
 //}
 //
 //solution(2, 5) // 결과: [2, 4, 6, 8, 10]
 //solution(4, 3) // 결과: [4, 8, 12]
 //solution(-4, 2) // 결과: [-4, -8]
-//
-//
-//
+
+
+
 //// Int 범위
 //print("Int8 범위: \(Int8.min) ~ \(Int8.max)")
 //print("Int16 범위: \(Int16.min) ~ \(Int16.max)")
@@ -427,47 +428,73 @@
 // 두 정수 사이의 합
 
 // <방법1>
-func solution(_ a:Int, _ b:Int) -> Int64 {
-    var sum = 0
-    // a와 b가 같다면,
-    if a == b {
-        // 둘 중 아무거나 리턴이므로 return a
-        return Int64(a)
-    }
-    
-    // firstNumber = a가 b보다 작다면 a, 아니라면 b
-    // secondNumber = a가 b보다 작다면 b, 아니리면 a
-    var firstNumber = a < b ? a : b
-    var secondNumber = a < b ? b : a
-    // a ~ b까지 for문 돌리기
-    for i in firstNumber...secondNumber {
-        // sum에 모두 더해주기
-        sum += i
-    }
-    
-    return Int64(sum)
-}
-
-solution(3, 5) // 결과: 12
-solution(3, 3) // 결과: 3
-solution(5, 3) // 결과: 12
+//func solution(_ a:Int, _ b:Int) -> Int64 {
+//    var sum = 0
+//    // a와 b가 같다면,
+//    if a == b {
+//        // 둘 중 아무거나 리턴이므로 return a
+//        return Int64(a)
+//    }
+//    
+//    // firstNumber = a가 b보다 작다면 a, 아니라면 b
+//    // secondNumber = a가 b보다 작다면 b, 아니리면 a
+//    var firstNumber = a < b ? a : b
+//    var secondNumber = a < b ? b : a
+//    // a ~ b까지 for문 돌리기
+//    for i in firstNumber...secondNumber {
+//        // sum에 모두 더해주기
+//        sum += i
+//    }
+//    
+//    return Int64(sum)
+//}
+//
+//solution(3, 5) // 결과: 12
+//solution(3, 3) // 결과: 3
+//solution(5, 3) // 결과: 12
 
 // <방법2>
 
-func solution2(_ a:Int, _ b:Int) -> Int64 {
-    var sum = 0
-    if a == b {
-        return Int64(a)
-    }
+//func solution2(_ a:Int, _ b:Int) -> Int64 {
+//    var sum = 0
+//    if a == b {
+//        return Int64(a)
+//    }
+//
+//    for i in (a < b ? a...b : b...a) {
+//        sum += i
+//    }
+//    
+//    return Int64(sum)
+//}
+//
+//solution2(3, 5) // 결과: 12
+//solution2(3, 3) // 결과: 3
+//solution2(5, 3) // 결과: 12
 
-    for i in (a < b ? a...b : b...a) {
-        sum += i
-    }
+// ------------------------------------------------------------------------------ //
+
+// 콜라츠 추측
+
+func solution(_ num:Int) -> Int {
+    var number = num
+    var count = 0
     
-    return Int64(sum)
+    while number > 1 {
+        if number % 2 == 0 {
+            number = number / 2
+        } else {
+            number = ( number * 3 ) + 1
+        }
+        count += 1
+        if count == 500 {
+            return -1
+        }
+    }
+    return count
 }
 
-solution2(3, 5) // 결과: 12
-solution2(3, 3) // 결과: 3
-solution2(5, 3) // 결과: 12
-
+solution(6) // 결과: 8
+solution(16) // 결과: 4
+solution(626331) // 결과: -1
+solution(1) // 결과: 0
