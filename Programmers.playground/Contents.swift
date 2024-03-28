@@ -476,25 +476,61 @@
 
 // 콜라츠 추측
 
-func solution(_ num:Int) -> Int {
-    var number = num
-    var count = 0
-    
-    while number > 1 {
-        if number % 2 == 0 {
-            number = number / 2
-        } else {
-            number = ( number * 3 ) + 1
-        }
-        count += 1
-        if count == 500 {
-            return -1
+//func solution(_ num:Int) -> Int {
+//    var number = num
+//    var count = 0
+//    
+//    while number > 1 {
+//        if number % 2 == 0 {
+//            number = number / 2
+//        } else {
+//            number = ( number * 3 ) + 1
+//        }
+//        count += 1
+//        if count == 500 {
+//            return -1
+//        }
+//    }
+//    return count
+//}
+//
+//solution(6) // 결과: 8
+//solution(16) // 결과: 4
+//solution(626331) // 결과: -1
+//solution(1) // 결과: 0
+
+// ------------------------------------------------------------------------------ //
+
+// 서울에서 김서방 찾기
+
+// <방법1>
+func solution(_ seoul:[String]) -> String {
+    var result = 0
+    for (index, name) in seoul.enumerated() {
+        if name == "Kim" {
+            result = index
         }
     }
-    return count
+    
+    return "김서방은 \(result)에 있다"
 }
 
-solution(6) // 결과: 8
-solution(16) // 결과: 4
-solution(626331) // 결과: -1
-solution(1) // 결과: 0
+solution(["Jane", "Kim", "Park", "Song", "Lee"]) 
+// 결과: "김서방은 1에 있다"
+solution(["Park", "Lee", "Song", "Kim", "Jane"])
+// 결과: "김서방은 3에 있다"
+
+// <방법2>
+func solution2(_ seoul:[String]) -> String {
+    for i in 0..<seoul.count {
+        if seoul[i] == "Kim" {
+            return "김서방은 \(i)에 있다"
+        }
+    }
+    return ""
+}
+
+solution2(["Jane", "Kim", "Park", "Song", "Lee"])
+// 결과: "김서방은 1에 있다"
+solution2(["Park", "Lee", "Song", "Kim", "Jane"])
+// 결과: "김서방은 3에 있다"
