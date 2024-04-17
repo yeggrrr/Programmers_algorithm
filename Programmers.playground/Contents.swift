@@ -504,33 +504,72 @@
 // 서울에서 김서방 찾기
 
 // <방법1>
-func solution(_ seoul:[String]) -> String {
-    var result = 0
-    for (index, name) in seoul.enumerated() {
-        if name == "Kim" {
-            result = index
-        }
-    }
-    
-    return "김서방은 \(result)에 있다"
-}
-
-solution(["Jane", "Kim", "Park", "Song", "Lee"]) 
-// 결과: "김서방은 1에 있다"
-solution(["Park", "Lee", "Song", "Kim", "Jane"])
-// 결과: "김서방은 3에 있다"
+//func solution(_ seoul:[String]) -> String {
+//    var result = 0
+//    for (index, name) in seoul.enumerated() {
+//        if name == "Kim" {
+//            result = index
+//        }
+//    }
+//    
+//    return "김서방은 \(result)에 있다"
+//}
+//
+//solution(["Jane", "Kim", "Park", "Song", "Lee"]) 
+//// 결과: "김서방은 1에 있다"
+//solution(["Park", "Lee", "Song", "Kim", "Jane"])
+//// 결과: "김서방은 3에 있다"
 
 // <방법2>
-func solution2(_ seoul:[String]) -> String {
-    for i in 0..<seoul.count {
-        if seoul[i] == "Kim" {
-            return "김서방은 \(i)에 있다"
-        }
+//func solution2(_ seoul:[String]) -> String {
+//    for i in 0..<seoul.count {
+//        if seoul[i] == "Kim" {
+//            return "김서방은 \(i)에 있다"
+//        }
+//    }
+//    return ""
+//}
+//
+//solution2(["Jane", "Kim", "Park", "Song", "Lee"])
+//// 결과: "김서방은 1에 있다"
+//solution2(["Park", "Lee", "Song", "Kim", "Jane"])
+//// 결과: "김서방은 3에 있다"
+
+
+// ------------------------------------------------------------------------------ //
+
+// 나누어 떨어지는 숫자 배열
+
+func solution(_ arr:[Int], _ divisor:Int) -> [Int] {
+    var result:[Int] = []
+    
+    for num in arr {
+     // divisor로 나누어 떨어지는 경우 찾기
+       if num % divisor == 0 {
+         result.append(num)
+       }
+     }
+     
+    // result에 아무런 값이 없을 경우 -1을 리턴
+    if result.isEmpty {
+        result.append(-1)
     }
-    return ""
+     
+     // 오름차순 정렬
+     return result.sorted()
 }
 
-solution2(["Jane", "Kim", "Park", "Song", "Lee"])
-// 결과: "김서방은 1에 있다"
-solution2(["Park", "Lee", "Song", "Kim", "Jane"])
-// 결과: "김서방은 3에 있다"
+solution([5, 9, 7, 10], 5) // 결과: [5, 10]
+solution([2, 36, 1, 3], 1) // 결과: [1, 2, 3, 36]
+solution([3,2,6], 10) // 결과: [-1]
+
+// 또 다른 풀이
+// 정렬을 먼저 한 후, filter 사용하기
+func solution2(_ arr:[Int], _ divisor:Int) -> [Int] {
+    let array = arr.sorted().filter{ $0 % divisor == 0 }
+    return  array == [] ? [-1] : array
+}
+
+// ------------------------------------------------------------------------------ //
+
+
