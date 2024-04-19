@@ -23,4 +23,4 @@ func solution(_ s:String) -> String {
 }
 
 solution("hello world")
-print(solution("hello world"))
+print(solution("hello world")) // HeLlO WoRlD
